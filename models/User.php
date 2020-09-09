@@ -23,6 +23,7 @@ use yii\web\Application as WebApplication;
 use yii\web\IdentityInterface;
 use yii\helpers\ArrayHelper;
 
+use app\models\transactions;
 
 /**
  * User ActiveRecord model.
