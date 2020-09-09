@@ -18,17 +18,17 @@ use dektrium\user\widgets\UserMenu;
 
 $user = Yii::$app->user->identity;
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <?= Html::img($user->profile->getAvatarUrl(24), [
+<div class="card  menu p-3">
+    <div class="card-heading">
+        <h3 class="card-title">
+            <?/*= Html::img($user->profile->getAvatarUrl(24), [
                 'class' => 'img-rounded',
                 'alt' => $user->username,
-            ]) ?>
-            <?= $user->username ?>
+            ]) */ ?> 
+            <i class="fas fa-user-cog"></i> <?= $user->username ?>
         </h3>
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <?= UserMenu::widget() ?>
     </div>
 </div>
