@@ -565,4 +565,12 @@ class User extends ActiveRecord implements IdentityInterface
     {
         throw new NotSupportedException('Method "' . __CLASS__ . '::' . __METHOD__ . '" is not implemented.');
     }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTransactions()
+    {
+        return $this->hasMany(Transactions::className(), ['user_id' => 'id']);
+    }
 }
