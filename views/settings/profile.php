@@ -31,11 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $this->render('_menu') ?>
     </div>
     <div class="col-md-9">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <?= Html::encode($this->title) ?>
+        <div class="card p-3">
+            <div class="card-heading">
+                <h5 class="card-title"><?= Html::encode($this->title) ?></h5>
             </div>
-            <div class="panel-body">
+            <div class="card-body col-9">
                 <?php $form = ActiveForm::begin([
                     'id' => 'profile-form',
                     'options' => ['class' => 'form-horizontal'],
@@ -54,9 +54,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'website') ?>
 
-                <?= $form->field($model, 'location') ?>
+                <?/* = $form->field($model, 'location')  */?>
 
-                <?= $form
+                <?/* = $form
                     ->field($model, 'timezone')
                     ->dropDownList(
                         ArrayHelper::map(
@@ -64,13 +64,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             'timezone',
                             'name'
                         )
-                    ); ?>
+                    );  */?>
 
-                <?= $form
+                <?/* = $form
                     ->field($model, 'gravatar_email')
-                    ->hint(Html::a(Yii::t('user', 'Change your avatar at Gravatar.com'), 'http://gravatar.com')) ?>
+                    ->hint(Html::a(Yii::t('user', 'Change your avatar at Gravatar.com'), 'http://gravatar.com'))  */?>
 
-                <?= $form->field($model, 'bio')->textarea() ?>
+                <?/* = $form->field($model, 'bio')->textarea()  */?>
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">
