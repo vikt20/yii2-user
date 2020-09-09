@@ -35,7 +35,8 @@ class SettingsController extends Controller
 {
     use AjaxValidationTrait;
     use EventTrait;
-
+	
+	public $layout = 'wholesale/wholesale';
     /**
      * Event is triggered before updating user's profile.
      * Triggered with \dektrium\user\events\UserEvent.
