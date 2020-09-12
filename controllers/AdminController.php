@@ -41,6 +41,7 @@ use yii\widgets\ActiveForm;
  */
 class AdminController extends Controller
 {
+	public $layout = '@app/modules/admin/views/layouts/admin';
     use EventTrait;
 
     /**
