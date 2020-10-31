@@ -31,8 +31,8 @@ class UserMenu extends Widget
         $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
         
         $this->items = [
-                ['label' => Yii::t('user', 'Profile'), 'url' => ['/user/settings/profile']],
-                ['label' => Yii::t('user', 'Account'), 'url' => ['/user/settings/account']],
+                ['label' => Yii::t('user', 'Аккаунт'), 'url' => ['/user/settings/account']],
+                ['label' => Yii::t('user', 'Профиль'), 'url' => ['/user/settings/profile']],
                 [
                     'label' => Yii::t('user', 'Networks'),
                     'url' => ['/user/settings/networks'],
