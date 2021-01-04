@@ -142,11 +142,11 @@ class LoginForm extends Model
      *
      * @return void
      */
-    public function validatePassword($attribute, $params)
+    /* public function validatePassword($attribute, $params)
     {
       if ($this->user === null || !Password::validate($this->password, $this->user->password_hash))
         $this->addError($attribute, Yii::t('user', 'Invalid login or password'));
-    }
+    } */
 
     /* public function otpPassword($attribute, $params)
     {
