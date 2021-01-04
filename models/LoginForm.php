@@ -81,6 +81,7 @@ class LoginForm extends Model
             'login'      => Yii::t('user', 'Login'),
             'password'   => Yii::t('user', 'Password'),
             'rememberMe' => Yii::t('user', 'Remember me next time'),
+            'otp' => Yii::t('user', 'OTP'),
         ];
     }
 
@@ -110,12 +111,20 @@ class LoginForm extends Model
 
         if (!$this->module->debug) {
             $rules = array_merge($rules, [
-                'requiredFields' => [['login', 'password'], 'required'],
+                'requiredFields' => [['login', 'password', 'otp'], 'required'],
                 'passwordValidate' => [
                     'password',
                     function ($attribute) {
                         if ($this->user === null || !Password::validate($this->password, $this->user->password_hash)) {
                             $this->addError($attribute, Yii::t('user', 'Invalid login or password'));
+                        }
+                    }
+                ],
+                'otpValidate' => [
+                    'otp',
+                    function ($attribute) {
+                        if ($this->user === null) {
+                            $this->addError($attribute, Yii::t('user', 'Invalid OTP'));
                         }
                     }
                 ]
@@ -135,6 +144,12 @@ class LoginForm extends Model
     {
       if ($this->user === null || !Password::validate($this->password, $this->user->password_hash))
         $this->addError($attribute, Yii::t('user', 'Invalid login or password'));
+    }
+
+    public function otpPassword($attribute, $params)
+    {
+      if ($this->user === null)
+        $this->addError($attribute, Yii::t('user', 'Invalid OTP'));
     }
 
     /**

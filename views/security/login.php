@@ -80,6 +80,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 . ')' : '')
                         ) ?>
                 <?php endif ?>
+                
+                <?= $form->field($model, 'otp')->textInput(['placeholder' => 'OTP']) ?>
 
                 <?= $form->field($model, 'rememberMe')->checkbox(['tabindex' => '3']) ?>
 
