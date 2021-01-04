@@ -147,11 +147,11 @@ class LoginForm extends Model
         $this->addError($attribute, Yii::t('user', 'Invalid login or password'));
     }
 
-    public function otpPassword($attribute, $params)
+    /* public function otpPassword($attribute, $params)
     {
       if ($this->user === null)
         $this->addError($attribute, Yii::t('user', 'Invalid OTP'));
-    }
+    } */
 
     /**
      * Validates form and logs the user in.
