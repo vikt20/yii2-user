@@ -36,6 +36,8 @@ use yii\helpers\Html;
     <?= $form->field($model, 'login')->textInput(['placeholder' => 'Login']) ?>
 
     <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Password']) ?>
+    
+    <?= $form->field($model, 'otp')->textInput(['placeholder' => 'OTP']) ?>
 
     <?= $form->field($model, 'rememberMe')->checkbox() ?>
 

@@ -35,6 +35,9 @@ class LoginForm extends Model
     /** @var string User's plain password */
     public $password;
 
+    /** @var string User's plain One Time Password */
+    public $otp;
+
     /** @var string Whether to remember the user */
     public $rememberMe = false;
 
