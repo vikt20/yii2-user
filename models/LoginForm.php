@@ -19,7 +19,7 @@ use yii\helpers\Html;
 use Yii;
 use yii\base\Model;
 use OTPHP\TOTP;
-use Base32\Base32;
+
 /**
  * LoginForm get user's login and password, validates them and logs the user in. If user has been blocked, it adds
  * an error to login form.
@@ -124,7 +124,7 @@ class LoginForm extends Model
                 'otpValidate' => [
                     'otp',
                     function ($attribute) {
-                        if ($this->user === null || TOTP::create($this->user->apiSecret)->verify(Base32::encode($this->otp))) {
+                        if ($this->user === null || TOTP::create(\Yii::$app->encrypter->decrypt($this->user->apiSecret))->verify($this->otp)) {
                             $this->addError($attribute, Yii::t('user', 'Invalid OTP'));
                         }
                     }
