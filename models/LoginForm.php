@@ -125,7 +125,7 @@ class LoginForm extends Model
                 'otpValidate' => [
                     'otp',
                      function ($attribute) {
-                        if ($this->user === null || TOTP::create(\Yii::$app->encrypter->decrypt($this->user->apiSecret))->verify($this->otp)) {
+                        if ($this->user === null || !TOTP::create(\Yii::$app->encrypter->decrypt($this->user->apiSecret))->verify($this->otp)) {
                             $this->addError($attribute, Yii::t('user', 'Invalid OTP'));
                         }
                     }
