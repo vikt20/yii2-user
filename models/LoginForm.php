@@ -121,7 +121,7 @@ class LoginForm extends Model
                         }
                     }
                 ],
-                'otp' => [['otp'], 'string','min' => 6, 'max' => 6],
+                'otp' => [['otp'], 'string','min' => 0, 'max' => 8],
                 'otpValidate' => [
                     'otp',
                      function ($attribute) {
