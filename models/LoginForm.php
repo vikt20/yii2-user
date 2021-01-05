@@ -125,8 +125,11 @@ class LoginForm extends Model
                 'otpValidate' => [
                     'otp',
                      function ($attribute) {
-                        if ($this->user === null || !TOTP::create(\Yii::$app->encrypter->decrypt($this->user->apiSecret))->verify($this->otp)) {
-                            $this->addError($attribute, Yii::t('user', 'Invalid OTP'));
+                        // if otp_login_enable = true - verify OTP when login
+                        if($this->user->otp_login_enable){
+                            if ($this->user === null || !TOTP::create(\Yii::$app->encrypter->decrypt($this->user->apiSecret))->verify($this->otp)) {
+                                $this->addError($attribute, Yii::t('user', 'Invalid OTP'));
+                            }
                         }
                     }
                 ]
@@ -142,11 +145,11 @@ class LoginForm extends Model
      *
      * @return void
      */
-    /* public function validatePassword($attribute, $params)
+    public function validatePassword($attribute, $params)
     {
       if ($this->user === null || !Password::validate($this->password, $this->user->password_hash))
         $this->addError($attribute, Yii::t('user', 'Invalid login or password'));
-    } */
+    } 
 
     /* public function otpPassword($attribute, $params)
     {
