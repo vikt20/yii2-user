@@ -61,8 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 ]);?>
 
-                <?= $form->field($model, 'ip_access') ?>
-                <span>Ваш текущий IP:<?= Yii::$app->request->userIP;?></span> 
+                <?= $form->field($model, 'ip_access')->textInput(['value' => Yii::$app->request->userIP])  ?>
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">
