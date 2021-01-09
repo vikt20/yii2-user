@@ -85,11 +85,11 @@ class Profile extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name'           => \Yii::t('user', 'Name'),
+            'name'           => \Yii::t('user', 'Организация'),
             'public_email'   => \Yii::t('user', 'Email (public)'),
             'gravatar_email' => \Yii::t('user', 'Gravatar email'),
             'location'       => \Yii::t('user', 'Location'),
-            'website'        => \Yii::t('user', 'Website'),
+            'website'        => \Yii::t('user', 'Веб-сайт'),
             'bio'            => \Yii::t('user', 'Bio'),
             'timezone'       => \Yii::t('user', 'Time zone'),
         ];

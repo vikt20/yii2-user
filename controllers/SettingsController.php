@@ -10,10 +10,11 @@
  */
 
 namespace dektrium\user\controllers;
-
+use Yii;
 use dektrium\user\Finder;
 use dektrium\user\models\Profile;
 use dektrium\user\models\SettingsForm;
+use dektrium\user\models\SecurityForm;
 use dektrium\user\models\User;
 use dektrium\user\Module;
 use dektrium\user\traits\AjaxValidationTrait;
@@ -31,7 +32,7 @@ use yii\web\NotFoundHttpException;
  *
  * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
-class SettingsController extends Controller
+class SettingsController extends \app\Controllers\AccessController
 {
     use AjaxValidationTrait;
     use EventTrait;
@@ -116,9 +117,22 @@ class SettingsController extends Controller
     }
 
     /** @inheritdoc */
-    public function behaviors()
+     public function behaviors()
     {
-        return [
+        /**
+         * add to extended controller access rule to confirm page
+         */
+        $behaviors = parent::behaviors();
+
+        $behaviors['access']['rules'][] = [
+            'allow'   => true,
+            'actions' => ['confirm'],
+            'roles'   => ['?', '@'],
+        ];
+
+        return $behaviors;
+        
+        /* return [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -131,8 +145,8 @@ class SettingsController extends Controller
                 'rules' => [
                     [
                         'allow'   => true,
-                        'actions' => ['profile', 'account', 'networks', 'disconnect', 'delete'],
-                        'roles'   => ['@'],
+                        'actions' => ['profile', 'account', 'networks', 'disconnect', 'security'],
+                        'roles'   => ['@']
                     ],
                     [
                         'allow'   => true,
@@ -141,8 +155,8 @@ class SettingsController extends Controller
                     ],
                 ],
             ],
-        ];
-    }
+        ];*/
+    } 
 
     /**
      * Shows profile settings form.
@@ -195,6 +209,28 @@ class SettingsController extends Controller
         }
 
         return $this->render('account', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Shows security settings form.
+     *
+     * @return string|\yii\web\Response
+     */
+    public function actionSecurity()
+    {
+        $model = \Yii::createObject(SecurityForm::className());
+       
+        $this->performAjaxValidation($model);
+
+        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
+            \Yii::$app->session->setFlash('success', \Yii::t('user', 'Your account details have been updated'));
+            //$this->trigger(self::EVENT_AFTER_ACCOUNT_UPDATE, $event);
+            return $this->refresh();
+        }
+
+        return $this->render('security', [
             'model' => $model,
         ]);
     }

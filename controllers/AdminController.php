@@ -39,7 +39,7 @@ use yii\widgets\ActiveForm;
  *
  * @author Dmitry Erofeev <dmeroff@gmail.com
  */
-class AdminController extends Controller
+class AdminController extends \app\controllers\AdminController
 {
 	public $layout = '@app/modules/admin/views/layouts/admin';
     use EventTrait;
@@ -165,7 +165,21 @@ class AdminController extends Controller
     /** @inheritdoc */
     public function behaviors()
     {
-        return [
+        $behaviors = parent::behaviors();
+
+        $behaviors['verbs'] = [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete'          => ['post'],
+                    'confirm'         => ['post'],
+                    'resend-password' => ['post'],
+                    'block'           => ['post'],
+                    'switch'          => ['post'],
+                ],
+            ];
+        return $behaviors; 
+
+        /* return [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -193,8 +207,8 @@ class AdminController extends Controller
                     ],
                 ],
             ],
-        ];
-    }
+        ];*/
+    } 
 
     /**
      * Lists all User models.
