@@ -94,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'visible' => Yii::$app->getModule('user')->enableConfirmation,
         ],
         [
-            'header' => Yii::t('user', 'Block status'),
+            'header' => Yii::t('user', 'Block statusS'),
             'value' => function ($model) {
                 if ($model->isBlocked) {
                     return Html::a(Yii::t('user', 'Unblock'), ['block', 'id' => $model->id], [
