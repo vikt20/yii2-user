@@ -22,7 +22,7 @@ $this->title = Yii::t('user', 'Account settings');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
+
 
 <div class="row m-0">
         <?= $this->render('_menu_custom') ?>
