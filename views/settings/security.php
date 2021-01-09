@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 ]);?>
 
-                
+                <?= $form->field($model, 'ip_access'); ?>
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">
