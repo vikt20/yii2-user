@@ -19,7 +19,7 @@ use dektrium\user\widgets\UserMenu;
 $user = Yii::$app->user->identity;
 ?>
 <div class="card  menu p-3">
-    <div class="card-heading">
+    <div class="card-header">
         <h3 class="card-title">
             <?/*= Html::img($user->profile->getAvatarUrl(24), [
                 'class' => 'img-rounded',

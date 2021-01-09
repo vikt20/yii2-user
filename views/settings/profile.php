@@ -27,15 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
 <div class="row">
-    <div class="col-md-3">
-        <?= $this->render('_menu') ?>
-    </div>
-    <div class="col-md-9">
-        <div class="card p-3">
-            <div class="card-heading">
-                <h5 class="card-title"><?= Html::encode($this->title) ?></h5>
-            </div>
-            <div class="card-body col-9">
+        <?= $this->render('_menu_custom') ?>
                 <?php $form = ActiveForm::begin([
                     'id' => 'profile-form',
                     'options' => ['class' => 'form-horizontal'],
@@ -80,7 +72,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
 
                 <?php ActiveForm::end(); ?>
-            </div>
         </div>
     </div>
 </div>
