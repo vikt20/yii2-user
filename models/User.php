@@ -117,6 +117,14 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @return bool Whether the user is blocked or not.
+     */
+    public function getIsApproved()
+    {
+        return $this->isApproved != null;
+    }
+
+    /**
      * @return bool Whether the user is an admin or not.
      */
     public function getIsAdmin()
@@ -488,6 +496,24 @@ class User extends ActiveRecord implements IdentityInterface
     public function unblock()
     {
         return (bool)$this->updateAttributes(['blocked_at' => null]);
+    }
+
+    /**
+     * Approve the user by setting 'isApprive' field to true.
+     */
+    public function approve()
+    {
+        return (bool)$this->updateAttributes([
+            'isApproved' => true,
+        ]);
+    }
+
+    /**
+     * Disapprove the user by setting 'isApprove' field to false.
+     */
+    public function disapprove()
+    {
+        return (bool)$this->updateAttributes(['isApproved' => false]);
     }
 
     /**

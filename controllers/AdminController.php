@@ -472,6 +472,36 @@ class AdminController extends \app\controllers\AdminController
         return $this->redirect(Url::previous('actions-redirect'));
     }
 
+     /**
+     * Approve the user.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function actionApprove($id)
+    {
+        if ($id == \Yii::$app->user->getId()) {
+            \Yii::$app->getSession()->setFlash('danger', \Yii::t('user', 'You can not block your own account'));
+        } else {
+            $user  = $this->findModel($id);
+            $event = $this->getUserEvent($user);
+            if ($user->getIsApproved()) {
+                
+                $user->disapprove();
+              
+                \Yii::$app->getSession()->setFlash('success', \Yii::t('user', 'User has been disaproved'));
+            } else {
+               
+                $user->approve();
+                
+                \Yii::$app->getSession()->setFlash('success', \Yii::t('user', 'User has been approved'));
+            }
+        }
+
+        return $this->redirect(Url::previous('actions-redirect'));
+    }
+
     /**
      * Generates a new password and sends it to the user.
      *
