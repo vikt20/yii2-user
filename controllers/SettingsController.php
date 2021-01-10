@@ -221,12 +221,13 @@ class SettingsController extends \app\Controllers\AccessController
     public function actionSecurity()
     {
         $model = \Yii::createObject(SecurityForm::className());
-       
+        $event = $this->getFormEvent($model);
+        
         $this->performAjaxValidation($model);
 
         if ($model->load(\Yii::$app->request->post()) && $model->save()) {
             \Yii::$app->session->setFlash('success', \Yii::t('user', 'Your account details have been updated'));
-            //$this->trigger(self::EVENT_AFTER_ACCOUNT_UPDATE, $event);
+            $this->trigger(self::EVENT_AFTER_ACCOUNT_UPDATE, $event);
             return $this->refresh();
         }
 

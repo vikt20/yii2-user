@@ -19,7 +19,7 @@ use dosamigos\switchinput\SwitchBox;
  * @var dektrium\user\models\SecurityForm $model
  */
 
-$this->title = Yii::t('user', 'Profile settings');
+$this->title = Yii::t('user', 'Security settings');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
