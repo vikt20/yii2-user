@@ -11,7 +11,8 @@
 
 use yii\helpers\Html;
 use dektrium\user\helpers\Timezone;
-use yii\widgets\ActiveForm;
+//use yii\widgets\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 /**
