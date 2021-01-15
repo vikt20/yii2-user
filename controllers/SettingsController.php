@@ -32,7 +32,7 @@ use yii\web\NotFoundHttpException;
  *
  * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
-class SettingsController extends \app\Controllers\AccessController
+class SettingsController extends \app\controllers\AccessController
 {
     use AjaxValidationTrait;
     use EventTrait;
