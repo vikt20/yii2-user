@@ -1,6 +1,6 @@
 <?php
 
-use yii\helpers\url;
+use yii\helpers\Url;
 
 function setActive($page){
     if(Yii::$app->controller->action->id == $page){
