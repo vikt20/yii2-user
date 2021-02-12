@@ -32,7 +32,7 @@ use yii\web\NotFoundHttpException;
  *
  * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
-class SettingsController extends \app\controllers\AccessController
+class SettingsController extends Controller
 {
     use AjaxValidationTrait;
     use EventTrait;
@@ -119,18 +119,19 @@ class SettingsController extends \app\controllers\AccessController
     /** @inheritdoc */
      public function behaviors()
     {
-        /**
-         * add to extended controller access rule to confirm page
-         */
-        $behaviors = parent::behaviors();
+        
+        $accessController = Yii::createObject('\app\controllers\AccessController');
+        $behaviors = $accessController->behaviors();
 
+        
+        //add to extended controller access rule to confirm page
         $behaviors['access']['rules'][] = [
             'allow'   => true,
             'actions' => ['confirm'],
             'roles'   => ['?', '@'],
         ];
 
-        return $behaviors;
+        return $behaviors; 
         
         /* return [
             'verbs' => [
